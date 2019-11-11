@@ -4,11 +4,12 @@ console.log(params)
 fetch(`http://localhost:3000/users/${id}`)
 .then(handleResponse)
 .then(user => {
-        const h1 = document.createElement('h1')
+        const h2 = document.createElement('h2')
 
-        h1.innerText = user.name
-
-        document.body.appendChild(h1)
+        h2.innerText = `${user.name}'s Playlist`
+        const header = document.querySelector("header")
+        
+        header.appendChild(h2)
     })
 
 
@@ -16,3 +17,4 @@ fetch(`http://localhost:3000/users/${id}`)
 function handleResponse(response){
 return response.json()
 }
+
