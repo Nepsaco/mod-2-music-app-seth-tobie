@@ -18,3 +18,14 @@ function handleResponse(response){
 return response.json()
 }
 
+document.body.onload = createSongCard;
+
+function createSongCard (song) { 
+  const newDiv = document.createElement("songDiv"); 
+  const cardContent = document.createTextNode(`${song.name}`);
+  songDiv.innerHTML = `<a href=user.html?id=${song.id}>${song.name}</a>` 
+  newDiv.appendChild(cardContent);  
+
+  let cardDiv = document.getElementById("songDiv"); 
+  document.body.insertBefore(newDiv, cardDiv); 
+}

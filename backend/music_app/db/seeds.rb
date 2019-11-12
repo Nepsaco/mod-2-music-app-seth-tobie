@@ -8,4 +8,6 @@
 User.destroy_all
 
 User.create(name: 'Seth', password: '1234')
-Artist.create()
+
+
+
