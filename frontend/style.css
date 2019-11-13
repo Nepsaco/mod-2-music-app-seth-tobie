@@ -49,7 +49,7 @@ table {
 }
 /* Code starts here -- */
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800&display=swap');
 /* COLOR PALETTE: GREEN =  hsl(141, 76%, 48%) BLACK =  hsl(0, 11%, 9%) */
 
 html {
@@ -89,11 +89,86 @@ nav li :hover {
 
 header {
 	display: flex;
-	justify-content: center;
-	margin-top: 6rem;
+	justify-content: space-between;
+    align-items: top;
+	margin: 6rem 6rem 12rem;
 }
+
 header h2 {
 	font-size: 2rem;
-	color: hsl(142, 76%, 80%);
-	text-shadow: 5px 5px 3px hsl(0, 0%, 0%);
+    font-weight: 400;
+	color: hsl(141, 76%, 48%);
+	text-shadow: 1px 1px 8px hsl(0, 0%, 0%);
 }
+
+header form {
+    align-items: flex-end;
+    
+}
+
+button {
+    background-color: hsl(141, 76%, 48%);
+    border-style: none;
+    border-radius: 20px;
+    padding:0 2rem;
+    color: white;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .1rem;
+	text-shadow: 1px 1px 5px hsl(142, 40%, 30%);
+    height: 2rem;
+
+}
+
+
+header label {
+	font-size: 2rem;
+    font-weight: 400;
+	color: hsl(141, 76%, 48%);
+    padding-right: 1rem;
+	text-shadow: 1px 1px 8px hsl(0, 0%, 0%);
+}
+
+.textInput {
+    color: white;
+    background-color: hsl(0, 11%, 3%);
+    border: 1px solid hsl(0, 11%, 20%);
+    margin-right: 1rem;
+    padding: .5rem;
+}
+
+.submitButton {
+    background-color: hsl(141, 76%, 48%);
+    border-style: none;
+    border-radius: 20px;
+    padding:0 2rem;
+    color: white;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .1rem;
+	text-shadow: 1px 1px 5px hsl(142, 40%, 30%);
+    height: 2rem;
+}
+
+#playlistContainer{
+    display: flex;
+    flex-flow: wrap;
+	margin: 6rem 6rem 12rem;
+}
+
+#playlistContainer .playlistCard {
+    flex: 25%;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 2%);
+    margin: 2rem;
+}
+
+.playlistCard h3 {
+	font-size: 1.5rem;
+    font-weight: 400;
+	color: hsl(141, 76%, 48%);
+    padding-right: 1rem;
+    padding-bottom: 3rem;
+	text-shadow: 1px 1px 8px hsl(0, 0%, 0%);
+}
+
+
