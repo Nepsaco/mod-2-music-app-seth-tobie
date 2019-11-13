@@ -6,8 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
+Playlist.destroy_all
 
-User.create(name: 'Seth', password: '1234')
+user1 = User.create(name: 'Seth', password: '1234')
 
-
+playlist1 = Playlist.create(name: 'Cool tunes', user: user1)
 

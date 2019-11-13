@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :playlists
   resources :artists
   resources :users
   # get '/auth/spotify/callback', to: 'users#spotify'
