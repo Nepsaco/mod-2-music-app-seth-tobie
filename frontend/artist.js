@@ -4,13 +4,14 @@ const id = params.get('id')
 fetch(`http://127.0.0.1:3000/artists/${id}`)
     .then(handleResponse)
     .then(artist => {
-                console.log(artist)
-                const h2 = document.createElement('h2')
-                h2.innertext = artist.name
+        const artistContainer = document.querySelector("#artistCardContainer")
+        const h2 = document.createElement('h2')
+        h2.innerText = artist.name
+        console.log(artist)
+        artistContainer.appendChild(h2)
 
-                document.body.appendChild(h2)
-            })
-        
+    })
+    
 
     
 
