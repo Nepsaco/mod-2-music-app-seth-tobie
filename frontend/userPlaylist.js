@@ -33,6 +33,7 @@ function createPlaylistCards (playlist) {
       playlistContainer.appendChild(div)
       div.appendChild(h3)
       updateButton(div, playlist)
+      destroyButton(div, playlist)
     })
 
 }
@@ -125,3 +126,21 @@ function updateButtonClick(button, div, playlist) {
     })
 }
 
+function destroyButton(div, playlist){
+    const button = document.createElement('button')
+
+    button.innerText = 'Destroy Playlist'
+    button.className = 'updateButton'
+    
+    div.appendChild(button)
+    deleteButtonClick(button, div, playlist)
+}
+
+function deleteButtonClick(button, div, playlist) {
+    button.addEventListener("click", function (event) {
+        div.remove()
+          fetch((`http://localhost:3000/playlists/${playlist.id}`), {
+            method: "DELETE"
+              })
+          })
+}
