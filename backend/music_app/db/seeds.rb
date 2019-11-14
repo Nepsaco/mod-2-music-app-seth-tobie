@@ -12,3 +12,4 @@ user1 = User.create(name: 'Seth', password: '1234')
 
 playlist1 = Playlist.create(name: 'Cool tunes', user: user1)
 
+artist1 = Artist.create(name: "")
