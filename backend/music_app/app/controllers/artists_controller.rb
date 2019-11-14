@@ -1,10 +1,12 @@
 require 'rest-client'
 class ArtistsController < ApplicationController
+  
   def index
     artists = Artist.all
     render json: artists
   end
-   
+  
+  
   def show
     artist = Artist.find(params[:id])
     rest_client = RestClient.get("https://api.spotify.com/v1/artists/#{artist.spotify_id}/top-tracks?country=US",
@@ -54,6 +56,9 @@ class ArtistsController < ApplicationController
     token = RestClient.post('https://accounts.spotify.com/api/token',
                             {'grant_type': 'client_credentials' },
                             {'Authorization': "Basic #{MusicApp::Application.credentials.encoded_key}"})
-    JSON.parse(token)['access_token']
+    render json: JSON.parse(token)['access_token'] 
+    
   end
+
+  
 end

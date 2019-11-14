@@ -12,11 +12,6 @@ fetch(`http://127.0.0.1:3000/artists/${id}`)
 
     })
     
-
-    
-
-
-
 function handleResponse(response){
     return response.json()
 }

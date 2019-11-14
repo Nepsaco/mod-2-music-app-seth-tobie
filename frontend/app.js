@@ -10,12 +10,12 @@ fetch('http://127.0.0.1:3000/users')
     .then(handleResponse)
     .then(users => {
         users.map(user => {
-            console.log(user.id)
             const h1 = document.createElement('h1')
             h1.innerHTML = `<a href=userPlaylist.html?id=${user.id}>${user.name}</a>`
             // h1.innerText = user.name
 
             document.body.appendChild(h1)
+            artistButtonClick()
         })
     })
 
@@ -67,3 +67,33 @@ function createArtistSongCards(artists){
  artistBody.append(artistSong)
 }
 
+function artistButtonClick () {
+    const div = document.querySelector("#artistSearchBar")
+    const button = div.querySelector("button")
+    console.log(div)
+    button.addEventListener("click", function(event) {
+        
+        fetch ('http://localhost:3000/tokens/', {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/JSON'
+            }
+
+        })
+        
+            .then(handleResponse)
+            .then(access_token => token = access_token["access_token"])
+
+        fetch ('https://api.spotify.com/v1/search?q=Queen&type=artist&market=US&limit=10', {
+
+                headers: {
+                'Authorization': 'Bearer BQBlufH2_jzsCOqg8IYBoVsNaOB3wLL5tD9yD0wYaj5VPoWAVfSL2uQJIYPb5g9rHnxCQJ2puSRfAptaPt-UL6yceW-liuSihegAcmrV6Lc5i91AvtpUOrZ2VHuIk3PcPSbXQW-nzUTLqFGMHAsEGbhUG7oqVMM',
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(handleResponse)
+            
+    })
+}
+
+let token = ""
