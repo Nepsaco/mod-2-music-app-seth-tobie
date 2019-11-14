@@ -7,7 +7,13 @@ class ArtistsController < ApplicationController
    
   def show
     artist = Artist.find(params[:id])
-    render json: artist
+    rest_client = RestClient.get("https://api.spotify.com/v1/artists/#{artist.spotify_id}/top-tracks?country=US",
+                                'Authorization' => "Bearer #{get_token}")
+    response = JSON.parse(rest_client)
+    song_names = response['tracks'].map{|track| track['name']}
+    song_ids = response['tracks'].map{|track| track['id']}
+
+    render json: song_ids
   end
 
   def create
