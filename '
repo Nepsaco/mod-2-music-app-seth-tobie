@@ -2,8 +2,6 @@ let artistsArray = []
 let allArtistAlbums = []
 let token = ""
 
-fetchToken()
-
 const artistSearchParams = new URLSearchParams(window.location.search)
 const artistQuery = artistSearchParams.get('id')
 const artistBody = document.body
@@ -70,36 +68,21 @@ function createArtistSongCards(artists){
  artistBody.append(artistSong)
 }
 
-function artistButtonClick() {
+function artistButtonClick () {
     const div = document.querySelector("#artistSearchBar")
     const button = div.querySelector("button")
-    const input = div.querySelector('input')
-
-
     button.addEventListener("click", function(event) {
-       fetch(`https://api.spotify.com/v1/search?q=${input.value}&type=artist&market=US&limit=10`, {
+       fetchToken()
+       fetch ('https://api.spotify.com/v1/search?q=Queen&type=artist&market=US&limit=10', {
                 headers: {
-                'Authorization': 'Bearer' + ' ' + token,
+                'Authorization': 'Bearer'+ token,
                 'Content-Type': 'application/x-www-form-urlencoded'
                 }
             })
         .then(handleResponse)
-        .then(object => object.artists.items.map(artist => {
-            const div = document.createElement('div')
-            const h2 = document.createElement('h2')
-            const button = document.createElement('a')
-
-            h2.innerText = artist.name
-            div.className = 'aritstCard'
-            button.innerHTML = `<a href='http://localhost:3001/artist.html?id=${artist.id}'>See Artist</a>`
-
-            document.body.appendChild(div)
-            div.append(h2, button)
-            })
-        )}
-    )}
-    
-
+        .then(console.log)
+    })
+}
 
 function fetchToken(){
         fetch ('http://localhost:3000/tokens/', {
@@ -111,5 +94,6 @@ function fetchToken(){
             .then(access_token =>{
                 token = access_token["access_token"]
             })
+                return token
 }
 
