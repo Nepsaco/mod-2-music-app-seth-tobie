@@ -33,8 +33,10 @@ class SongsController < ApplicationController
   end
 
   def create
-    Artist.all
-    binding.pry
+    song = Song.create({
+      name: params[:name],
+      song_id: params[:song_id]
+    })
   end
 
   private
