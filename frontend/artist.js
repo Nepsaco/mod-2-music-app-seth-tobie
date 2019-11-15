@@ -15,20 +15,21 @@ function fetchTopTracks(token){
     })
         .then(response => response.json())
         .then(object => object.tracks.map(track => {
-        const artistContainer = document.querySelector("#artistCardContainer")
-        const h3 = document.createElement('h3')
+            const artistContainer = document.querySelector("#artistCardContainer")
+            const h3 = document.createElement('h3')
         
-        const addToPlaylistButton = document.createElement("button")
-        const div = document.createElement("div")
+            const addToPlaylistButton = document.createElement("button")
+            const div = document.createElement("div")
 
-        h3.innerText = track.name
-        addToPlaylistButton.innerText = "Add to Playlist?"
-        div.className = "songCard"
-        
-        artistContainer.append(div)
-        div.append(h3, addToPlaylistButton)
-        clickAddToPlaylistButton(addToPlaylistButton, track)
-        return track
+            h3.innerText = track.name
+            addToPlaylistButton.innerText = "Add to Playlist?"
+            div.className = "songCard"
+            
+            
+            artistContainer.append(div)
+            div.append(h3, addToPlaylistButton)
+            clickAddToPlaylistButton(addToPlaylistButton, track)
+            return track
     } 
 
      ))
@@ -74,7 +75,34 @@ function clickAddToPlaylistButton(button, track){
              song_id: track.id
          })
         }
-    )
+    ).then (fetch ("http://localhost:3000/playlists", {
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/JSON'
+         },
+        body: JSON.stringify({
+            name: track.name,
+            song_id: track.id
+            })
+        }
+        )
+     )
     })
 }
 
+function pickPlaylist() {
+    const select = document.querySelector("#dropDown")
+    fetch("http://localhost:3000/playlists")
+        .then(handleResponse)
+        .then(playlists => {
+            console.log(playlists)
+            playlists.map(playlist => {
+                const option = document.createElement('option')
+                option.value = playlist.id
+                option.innerText = playlist.name
+  
+                select.append(option)
+            })
+        })
+}
+pickPlaylist()
