@@ -37,6 +37,7 @@ class SongsController < ApplicationController
       name: params[:name],
       song_id: params[:song_id]
     })
+    render json: song
   end
 
   private

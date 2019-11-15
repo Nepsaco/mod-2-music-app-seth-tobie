@@ -2,7 +2,8 @@ const params = new URLSearchParams(window.location.search)
 const id = params.get('id')
 let token = "" 
 
-fetchToken().then(fetchTopTracks)
+fetchToken()
+    .then(fetchTopTracks)
 
 function fetchTopTracks(token){
    
@@ -16,20 +17,29 @@ function fetchTopTracks(token){
         .then(object => object.tracks.map(track => {
         const artistContainer = document.querySelector("#artistCardContainer")
         const h3 = document.createElement('h3')
+        
+        const addToPlaylistButton = document.createElement("button")
+        const div = document.createElement("div")
 
         h3.innerText = track.name
-        artistContainer.appendChild(h3)
+        addToPlaylistButton.innerText = "Add to Playlist?"
+        div.className = "songCard"
+        
+        artistContainer.append(div)
+        div.append(h3, addToPlaylistButton)
+        clickAddToPlaylistButton(addToPlaylistButton, track)
         return track
     } 
 
-     )).then(track => {
-         fetch("http://localhost:3000/songs/", {
-         method:'POST',
-         headers: {
-             'Content-Type': 'application/JSON'
+     ))
+    //  .then(track => {
+    //      fetch("http://localhost:3000/songs/", {
+    //      method:'POST',
+    //      headers: {
+    //          'Content-Type': 'application/JSON'
         
-         }
-     })})
+    //      }
+    //  })})
 
     }
 
@@ -51,5 +61,20 @@ function fetchToken(){
         })
 }
 
-
+function clickAddToPlaylistButton(button, track){
+    button.addEventListener("click", (event) => {
+        fetch("http://localhost:3000/songs", {
+         method:'POST',
+         headers: {
+             'Content-Type': 'application/JSON'
+            
+         },
+         body: JSON.stringify({
+             name: track.name,
+             song_id: track.id
+         })
+        }
+    )
+    })
+}
 
